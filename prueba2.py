@@ -55,15 +55,15 @@ if numargument == 6:
 	month_max = int(sys.argv[5])
 	day_max = int(sys.argv[6])
 
-	ts_min = (datetime.datetime(year_min, month_min, day_min, 0, 0) - datetime.datetime(1601,1,1)).total_seconds()
-	ts_max = (datetime.datetime(year_max, month_max, day_max, 0, 0) - datetime.datetime(1601,1,1)).total_seconds()
+	ts_min = (datetime.datetime(year_min, month_min, day_min, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
+	ts_max = (datetime.datetime(year_max, month_max, day_max, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
 
 	ts_min = int(ts_min) * 1000000
 	ts_max = int(ts_max) * 1000000
 	data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
 
 	# Build Data path
-	data_path = "/Users/'"+user+"'/Library/Application Support/Firefox/Profiles/s943o6hz.default-release-1/"
+	data_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/s943o6hz.default-release-1/"
 	history_db = os.path.join(data_path, 'places.sqlite')
 
 	# Make connection with sqlite3 database
@@ -98,7 +98,11 @@ else:
 	ts_max = int(ts_max) * 1000000
 
 	# Build Data path
+	#Ruta para Mac
 	data_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/s943o6hz.default-release-1/"
+	history_db = os.path.join(data_path, 'places.sqlite')
+	#Ruta para Windows
+	data_path = "/Users/"+user+"/Appdata/Roaming/Firefox/Profiles/opy8vubs.default-release/"
 	history_db = os.path.join(data_path, 'places.sqlite')
 
 	# Make connection with sqlite3 database
