@@ -45,11 +45,11 @@ def get_day_less1():
 def mozilla_history():
 	user = os.environ.get("USER")
 	#Path Mac
-	pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
+	#pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
 
 	#Path Windows
-	#data = path.expandvars(r'%LOCALAPPDATA%/Roaming/Mozilla/Firefox/Profiles')
-	#pre_path = data
+	data = path.expandvars(r'%LOCALAPPDATA%/Roaming/Mozilla/Firefox/Profiles')
+	pre_path = data
 
 	directorys = os.listdir(pre_path)
 	for x in range(len(directorys)):
