@@ -44,16 +44,8 @@ def mozilla_history():
 	#Path Mac
 	#user = os.environ.get("USER")
 	#pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
-	#Path Windows
-	data = path.expandvars(r'%APPDATA%/Roaming/Mozilla/Firefox/Profiles')
-	pre_path = data
 
-	directorys = os.listdir(pre_path)
-	for x in range(len(directorys)):
-		path = os.path.join(pre_path, directorys[x])
-		final_path = os.path.join(path, 'places.sqlite')
-		if os.path.exists(final_path) == True:
-			data_path = final_path
+
 	numargument = len(sys.argv) - 1
 	if numargument == 6:
 		
@@ -70,19 +62,28 @@ def mozilla_history():
 		ts_min = int(ts_min) * 1000000
 		ts_max = int(ts_max) * 1000000
 
+		#Path Windows
+		data = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
+		pre_path = data
+
+		directorys = os.listdir(pre_path)
+		for x in range(len(directorys)):
+			path = os.path.join(pre_path, directorys[x])
+			final_path = os.path.join(path, 'places.sqlite')
+			if os.path.exists(final_path) == True:
+				data_path = final_path
+
 		c = sqlite3.connect(data_path)
 
 		cursor = c.cursor()
 		select_statement = "select moz_places.url, moz_places.visit_count from moz_places where last_visit_date between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'"
 		cursor.execute(select_statement)
 
-		# Fetch the result and Prints the result
 		results = cursor.fetchall()
 
 		for url, count in results:
 			print(url)
 
-		# Close the cursor
 		cursor.close()
 
 	else:
@@ -98,6 +99,17 @@ def mozilla_history():
 
 		ts_min = int(ts_min) * 1000000
 		ts_max = int(ts_max) * 1000000
+
+		#Path Windows
+		data = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
+		pre_path = data
+
+		directorys = os.listdir(pre_path)
+		for x in range(len(directorys)):
+			path = os.path.join(pre_path, directorys[x])
+			final_path = os.path.join(path, 'places.sqlite')
+			if os.path.exists(final_path) == True:
+				data_path = final_path
 
 		c = sqlite3.connect(data_path)
 
