@@ -58,12 +58,12 @@ def chrome_history():
 
 		ts_min = int(ts_min) * 1000000
 		ts_max = int(ts_max) * 1000000
-		data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
 
 		#Ruta para Mac
-		con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
+		#con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
 		#Ruta para Windows
-		#con = sqlite3.connect(data)
+		data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
+		con = sqlite3.connect(data)
 		c = con.cursor()
 
 		c.execute("select * from urls where last_visit_time between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'")
@@ -89,7 +89,8 @@ def chrome_history():
 		#Ruta para Mac
 		#con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
 		#Ruta para Windows
-		con = sqlite3.connect('/Users/IEUser/AppData/Local/Google/Chrome/User Data/Default/History')
+		data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
+		con = sqlite3.connect(data)
 		c = con.cursor()
 
 		c.execute("select * from urls where last_visit_time between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'")
