@@ -44,7 +44,13 @@ def get_day_less1():
 
 def mozilla_history():
 	user = os.environ.get("USER")
+	#Path Mac
 	pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
+
+	#Path Windows
+	#data = path.expandvars(r'%LOCALAPPDATA%/Roaming/Mozilla/Firefox/Profiles')
+	#pre_path = data
+
 	directorys = os.listdir(pre_path)
 	for x in range(len(directorys)):
 		path = os.path.join(pre_path, directorys[x])
@@ -66,7 +72,6 @@ def mozilla_history():
 
 		ts_min = int(ts_min) * 1000000
 		ts_max = int(ts_max) * 1000000
-		#data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
 
 		c = sqlite3.connect(data_path)
 
@@ -97,18 +102,8 @@ def mozilla_history():
 		ts_min = int(ts_min) * 1000000
 		ts_max = int(ts_max) * 1000000
 
-		# Build Data path
-		#Ruta para Mac
-		data_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/s943o6hz.default-release-1/"
-		history_db = os.path.join(data_path, 'places.sqlite')
-		#Ruta para Windows
-		#data_path = "/Users/"+user+"/Appdata/Roaming/Firefox/Profiles/opy8vubs.default-release/"
-		#history_db = os.path.join(data_path, 'places.sqlite')
+		c = sqlite3.connect(data_path)
 
-		# Make connection with sqlite3 database
-		c = sqlite3.connect(history_db)
-
-		# Create cursor object to execute query
 		cursor = c.cursor()
 		select_statement = "select moz_places.url, moz_places.visit_count from moz_places where last_visit_date between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'"
 		cursor.execute(select_statement)
@@ -121,5 +116,3 @@ def mozilla_history():
 
 		# Close the cursor
 		cursor.close()
-
-mozilla_history()
