@@ -1,17 +1,34 @@
 import os
 import re
-carpetas = os.listdir("/Users/ygonzale/Library/Application Support/Firefox/Profiles/")
-i = -1
-while carpetas[i]:
-	i+=1
-	if carpetas == 's943o6hz.default-release-1':
-		print(carpetas)
+pre_path = "/Users/ygonzale/Library/Application Support/Firefox/Profiles/"
+directorys = os.listdir(pre_path)
+for x in range(len(directorys)):
+	path = os.path.join(pre_path, directorys[x])
+	final_path = os.path.join(path, 'places.sqlite')
+	if os.path.exists(final_path) == True:
+		print("ole!" + final_path)
 
 
-import fnmatch
+""" import fnmatch
 import os
 def get_pdfs():
-	directory_current = "/Users/ygonzale/Library/Application Support/Firefox/Profiles/s943o6hz.default-release-1"
+	patata = "/Users/ygonzale/Library/Application Support/Firefox/Profiles/"
+	directorys = os.listdir(patata)
+	for x in range(len(directorys)):
+		path = os.path.join(patata, directorys[x])
+		for file in os.listdir(path):
+			if os.path.isfile(path + "/" + file):
+				if fnmatch.fnmatch(file, '*.sqlite'):
+					i = 0
+						database = file
+						return database
+archivo = get_pdfs()
+print (archivo) """
+
+""" import fnmatch
+import os
+def get_pdfs():
+	directory_current = "/Users/ygonzale/Library/Application Support/Firefox/Profiles/"
 	for file in os.listdir(directory_current):
 		if os.path.isfile(directory_current + "/" + file):
 			if fnmatch.fnmatch(file, '*.sqlite'):
@@ -20,4 +37,4 @@ def get_pdfs():
 					database = file
 					return database
 archivo = get_pdfs()
-print (archivo)
+print (archivo) """
