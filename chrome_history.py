@@ -41,7 +41,6 @@ def get_day_less1():
 	return day
 
 def chrome_history():
-	user = os.environ.get("USER")
 
 	numargument = len(sys.argv) - 1
 	if numargument == 6:
@@ -60,10 +59,13 @@ def chrome_history():
 		ts_max = int(ts_max) * 1000000
 
 		#Ruta para Mac
+		#user = os.environ.get("USER")
 		#con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
+
 		#Ruta para Windows
 		data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
 		con = sqlite3.connect(data)
+
 		c = con.cursor()
 
 		c.execute("select * from urls where last_visit_time between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'")
@@ -87,10 +89,13 @@ def chrome_history():
 		ts_max = int(ts_max) * 1000000
 
 		#Ruta para Mac
+		#user = os.environ.get("USER")
 		#con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
+
 		#Ruta para Windows
 		data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
 		con = sqlite3.connect(data)
+
 		c = con.cursor()
 
 		c.execute("select * from urls where last_visit_time between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'")

@@ -42,9 +42,12 @@ def get_day_less1():
 
 def mozilla_history():
 	from os import path
+
 	#Path Mac
 	#user = os.environ.get("USER")
 	#pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
+
+	print(pre_path)
 
 
 	numargument = len(sys.argv) - 1
@@ -64,7 +67,7 @@ def mozilla_history():
 		ts_max = int(ts_max) * 1000000
 
 		#Path Windows
-		pre_path = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
+		#pre_path = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
 
 		directorys = os.listdir(pre_path)
 		for x in range(len(directorys)):
@@ -72,7 +75,8 @@ def mozilla_history():
 			final_path = os.path.join(path, 'places.sqlite')
 			if os.path.exists(final_path) == True:
 				data_path = final_path
-
+		
+		print(data_path)
 		c = sqlite3.connect(data_path)
 
 		cursor = c.cursor()
@@ -101,8 +105,8 @@ def mozilla_history():
 		ts_max = int(ts_max) * 1000000
 
 		#Path Windows
-		data = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
-		pre_path = data
+		#data = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
+		#pre_path = data
 
 		directorys = os.listdir(pre_path)
 		for x in range(len(directorys)):
