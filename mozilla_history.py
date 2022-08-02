@@ -47,81 +47,75 @@ def mozilla_history(year_min, month_min, day_min, year_max, month_max, day_max):
 	user = os.environ.get("USER")
 	pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
 
+	ts_min = (datetime.datetime(year_min, month_min, day_min, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
+	ts_max = (datetime.datetime(year_max, month_max, day_max, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
 
-	numargument = len(sys.argv) - 1
-	print(numargument)
-	if numargument == 6:
-		""" year_min = int(sys.argv[1])
-		month_min = int(sys.argv[2])
-		day_min = int(sys.argv[3])
-		year_max = int(sys.argv[4])
-		month_max = int(sys.argv[5])
-		day_max = int(sys.argv[6]) """
+	ts_min = int(ts_min) * 1000000
+	ts_max = int(ts_max) * 1000000
 
-		print("entra")
-		ts_min = (datetime.datetime(year_min, month_min, day_min, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
-		ts_max = (datetime.datetime(year_max, month_max, day_max, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
+	#Path Windows
+	#pre_path = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
 
-		ts_min = int(ts_min) * 1000000
-		ts_max = int(ts_max) * 1000000
+	directorys = os.listdir(pre_path)
+	for x in range(len(directorys)):
+		path = os.path.join(pre_path, directorys[x])
+		final_path = os.path.join(path, 'places.sqlite')
+		if os.path.exists(final_path) == True:
+			data_path = final_path
+			
+	c = sqlite3.connect(data_path)
 
-		#Path Windows
-		#pre_path = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
+	cursor = c.cursor()
+	select_statement = "select moz_places.url, moz_places.visit_count from moz_places where last_visit_date between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'"
+	cursor.execute(select_statement)
 
-		directorys = os.listdir(pre_path)
-		for x in range(len(directorys)):
-			path = os.path.join(pre_path, directorys[x])
-			final_path = os.path.join(path, 'places.sqlite')
-			if os.path.exists(final_path) == True:
-				data_path = final_path
-				
-		c = sqlite3.connect(data_path)
+	results = cursor.fetchall()
 
-		cursor = c.cursor()
-		select_statement = "select moz_places.url, moz_places.visit_count from moz_places where last_visit_date between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'"
-		cursor.execute(select_statement)
+	for url, count in results:
+		print(url)
 
-		results = cursor.fetchall()
+	cursor.close()
+	
+def mozilla_without_arg():
+	print("MOZILLA FIREFOX HISTORY 24H")
 
-		for url, count in results:
-			print(url)
+	#Path Mac
+	user = os.environ.get("USER")
+	pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
 
-		cursor.close()
+	year = get_year()
+	mes = get_month()
+	day = get_day()
+	year_less1 = get_yearl_less1()
+	month_less1 = get_month_less1()
+	day_less1 = get_day_less1()
 
-	else:
-		year = get_year()
-		mes = get_month()
-		day = get_day()
-		year_less1 = get_yearl_less1()
-		month_less1 = get_month_less1()
-		day_less1 = get_day_less1()
+	ts_min = (datetime.datetime(year_less1, month_less1, day_less1, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
+	ts_max = (datetime.datetime(year, mes, day, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
 
-		ts_min = (datetime.datetime(year_less1, month_less1, day_less1, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
-		ts_max = (datetime.datetime(year, mes, day, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
+	ts_min = int(ts_min) * 1000000
+	ts_max = int(ts_max) * 1000000
 
-		ts_min = int(ts_min) * 1000000
-		ts_max = int(ts_max) * 1000000
+	#Path Windows
+	#data = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
+	#pre_path = data
 
-		#Path Windows
-		#data = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
-		#pre_path = data
+	directorys = os.listdir(pre_path)
+	for x in range(len(directorys)):
+		path = os.path.join(pre_path, directorys[x])
+		final_path = os.path.join(path, 'places.sqlite')
+		if os.path.exists(final_path) == True:
+			data_path = final_path
 
-		directorys = os.listdir(pre_path)
-		for x in range(len(directorys)):
-			path = os.path.join(pre_path, directorys[x])
-			final_path = os.path.join(path, 'places.sqlite')
-			if os.path.exists(final_path) == True:
-				data_path = final_path
+	c = sqlite3.connect(data_path)
 
-		c = sqlite3.connect(data_path)
+	cursor = c.cursor()
+	select_statement = "select moz_places.url, moz_places.visit_count from moz_places where last_visit_date between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'"
+	cursor.execute(select_statement)
 
-		cursor = c.cursor()
-		select_statement = "select moz_places.url, moz_places.visit_count from moz_places where last_visit_date between '"+ str(ts_min) +"' and '"+ str(ts_max)  +"'"
-		cursor.execute(select_statement)
+	results = cursor.fetchall()
 
-		results = cursor.fetchall()
+	for url, count in results:
+		print(url)
 
-		for url, count in results:
-			print(url)
-
-		cursor.close()
+	cursor.close()
