@@ -35,7 +35,6 @@ def main():
 		
 
 	print(" \n \n ---------------------------------  \n \n")
-	print("MOZILLA FIREFOX \n")
 
 	#Ruta Mac
 	data_firefox = "/Users/"+user+"/Library/Application Support"

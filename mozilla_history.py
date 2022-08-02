@@ -42,6 +42,7 @@ def get_day_less1():
 
 def mozilla_history(year_min, month_min, day_min, year_max, month_max, day_max):
 	from os import path
+	print("MOZILLA FIREFOX \n")
 
 	#Path Mac
 	user = os.environ.get("USER")
