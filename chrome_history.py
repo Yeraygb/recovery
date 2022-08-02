@@ -40,17 +40,18 @@ def get_day_less1():
 	day = dateless1.day
 	return day
 
-def chrome_history():
+def chrome_history(year_min, month_min, day_min, year_max, month_max, day_max):
 
 	numargument = len(sys.argv) - 1
+	print(numargument)
 	if numargument == 6:
 		
-		year_min = int(sys.argv[1])
+		""" year_min = int(sys.argv[1])
 		month_min = int(sys.argv[2])
 		day_min = int(sys.argv[3])
 		year_max = int(sys.argv[4])
 		month_max = int(sys.argv[5])
-		day_max = int(sys.argv[6])
+		day_max = int(sys.argv[6]) """
 
 		ts_min = (datetime.datetime(year_min, month_min, day_min, 0, 0) - datetime.datetime(1601,1,1)).total_seconds()
 		ts_max = (datetime.datetime(year_max, month_max, day_max, 0, 0) - datetime.datetime(1601,1,1)).total_seconds()
@@ -59,12 +60,12 @@ def chrome_history():
 		ts_max = int(ts_max) * 1000000
 
 		#Ruta para Mac
-		#user = os.environ.get("USER")
-		#con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
+		user = os.environ.get("USER")
+		con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
 
 		#Ruta para Windows
-		data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
-		con = sqlite3.connect(data)
+		#data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
+		#con = sqlite3.connect(data)
 
 		c = con.cursor()
 
@@ -89,12 +90,12 @@ def chrome_history():
 		ts_max = int(ts_max) * 1000000
 
 		#Ruta para Mac
-		#user = os.environ.get("USER")
-		#con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
+		user = os.environ.get("USER")
+		con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
 
 		#Ruta para Windows
-		data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
-		con = sqlite3.connect(data)
+		#data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
+		#con = sqlite3.connect(data)
 
 		c = con.cursor()
 

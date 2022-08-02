@@ -40,26 +40,25 @@ def get_day_less1():
 	day = dateless1.day
 	return day
 
-def mozilla_history():
+def mozilla_history(year_min, month_min, day_min, year_max, month_max, day_max):
 	from os import path
 
 	#Path Mac
-	#user = os.environ.get("USER")
-	#pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
-
-	print(pre_path)
+	user = os.environ.get("USER")
+	pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
 
 
 	numargument = len(sys.argv) - 1
+	print(numargument)
 	if numargument == 6:
-		
-		year_min = int(sys.argv[1])
+		""" year_min = int(sys.argv[1])
 		month_min = int(sys.argv[2])
 		day_min = int(sys.argv[3])
 		year_max = int(sys.argv[4])
 		month_max = int(sys.argv[5])
-		day_max = int(sys.argv[6])
+		day_max = int(sys.argv[6]) """
 
+		print("entra")
 		ts_min = (datetime.datetime(year_min, month_min, day_min, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
 		ts_max = (datetime.datetime(year_max, month_max, day_max, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
 
@@ -75,8 +74,7 @@ def mozilla_history():
 			final_path = os.path.join(path, 'places.sqlite')
 			if os.path.exists(final_path) == True:
 				data_path = final_path
-		
-		print(data_path)
+				
 		c = sqlite3.connect(data_path)
 
 		cursor = c.cursor()

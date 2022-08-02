@@ -1,18 +1,53 @@
 #!/usr/bin/python3
-
-""" def main():
-	print("GOOGLE CHROME HISTORY \n")
-	chrome_history.chrome_history()
-	print("\n \n \n --------------------------------- \n \n \n")
-	print("MOZILLA FIREFOX \n \n")
-	mozilla_history.mozilla_history()
-
-main() """
-
-
-#!/usr/bin/python3
+import os
+from os import path
 import mozilla_history
 import chrome_history
+
+def main():
+	print("Write the date:")
+	age1 = int(input())
+	mes1 = int(input())
+	day1 = int(input())
+	age = int(input())
+	mes = int(input())
+	day = int(input())
+
+	#Ruta Mac
+	user = os.environ.get("USER")
+	data_chrome = "/Users/"+user+"/Library/Application Support"
+
+	#Ruta Windows
+	#data_chrome = "%LOCALAPPDATA%"
+
+	path_compr = os.path.join(data_chrome, 'Google')
+	
+
+	print("GOOGLE CHROME HISTORY \n")
+	if os.path.exists(path_compr) == True:
+		chrome_history.chrome_history(age1, mes1, day1, age, mes, day)
+	else:
+		print("You have no instaled Google chrome")
+		
+
+	print(" \n \n ---------------------------------  \n \n")
+	print("MOZILLA FIREFOX \n")
+
+	#Ruta Mac
+	data_firefox = "/Users/"+user+"/Library/Application Support"
+	fire_compr = os.path.join(data_firefox, 'Firefox')
+
+	#Ruta Windowws
+	#data_firefox = path.expandvars(r'%APPDATA%')
+	#data_firefox = "%APPDATA%"
+	#fire_compr = os.path.join(data_firefox, 'Mozilla')
+
+	if os.path.exists(fire_compr) == True:
+		mozilla_history.mozilla_history(age1, mes1, day1, age, mes, day)
+	else:
+		print("You have no installed Firefox")
+
+main()
 
 
 """ def pedirNumeroEntero():
@@ -30,7 +65,7 @@ import chrome_history
 
 
 
-salir = False
+""" salir = False
 opcion = 0
 
 while not salir:
@@ -63,3 +98,4 @@ while not salir:
 		print ("Introduce un numero entre 1 y 3")
 
 print ("Fin")
+ """
