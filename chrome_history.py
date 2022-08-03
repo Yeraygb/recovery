@@ -40,7 +40,14 @@ def get_day_less1():
 	day = dateless1.day
 	return day
 
-def chrome_history(year_min, month_min, day_min, year_max, month_max, day_max):
+def chrome_history(year_ini, month_ini, day_ini, year_final, month_final, day_final):
+
+	year_min = int(year_ini)
+	month_min = int(month_ini)
+	day_min = int(day_ini)
+	year_max = int(year_final)
+	month_max = int(month_final)
+	day_max = int(day_final)
 
 	ts_min = (datetime.datetime(year_min, month_min, day_min, 0, 0) - datetime.datetime(1601,1,1)).total_seconds()
 	ts_max = (datetime.datetime(year_max, month_max, day_max, 0, 0) - datetime.datetime(1601,1,1)).total_seconds()
