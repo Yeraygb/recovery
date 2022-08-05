@@ -33,9 +33,3 @@ def dates(fecha_inicio, fecha_final):
 	#date = datetime.strptime(vuelta_incio, '%d-%m-%Y')
 
 dates(sys.argv[1], sys.argv[2])
-numargument = len(sys.argv) - 1
-if numargument == 2:
-	TODO EL PROGRAMA CON FECHAS
-else:
-	el prgroama con fechas por defeccto
-
