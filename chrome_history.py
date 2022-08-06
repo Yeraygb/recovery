@@ -41,7 +41,7 @@ def get_day_less1():
 	return day
 
 def chrome_history(year_ini, month_ini, day_ini, year_final, month_final, day_final):
-
+	print("GOOGLE CHROME HISTORY \n")
 	year_min = int(year_ini)
 	month_min = int(month_ini)
 	day_min = int(day_ini)
@@ -56,12 +56,12 @@ def chrome_history(year_ini, month_ini, day_ini, year_final, month_final, day_fi
 	ts_max = int(ts_max) * 1000000
 
 	#Ruta para Mac
-	user = os.environ.get("USER")
-	con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
+	#user = os.environ.get("USER")
+	#con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
 
 	#Ruta para Windows
-	#data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
-	#con = sqlite3.connect(data)
+	data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
+	con = sqlite3.connect(data)
 
 	c = con.cursor()
 
@@ -88,12 +88,12 @@ def without_arg():
 	ts_max = int(ts_max) * 1000000
 
 	#Ruta para Mac
-	user = os.environ.get("USER")
-	con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
+	#user = os.environ.get("USER")
+	#con = sqlite3.connect('/Users/'+user+'/Library/Application Support/Google/Chrome/Default/History')
 
 	#Ruta para Windows
-	#data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
-	#con = sqlite3.connect(data)
+	data = path.expandvars(r'%LOCALAPPDATA%/Google/Chrome/User Data/Default/History')
+	con = sqlite3.connect(data)
 
 	c = con.cursor()
 
