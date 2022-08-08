@@ -83,31 +83,35 @@ numargument = len(sys.argv) - 1
 dateargmunet1 = str(sys.argv[1])
 dateargmunet2 = str(sys.argv[2])
 
-if dateargmunet1[4] == "/":
-	splitslash1 = dateargmunet1.split("/")
-	hyphenjoin1 = "-".join(splitslash1)
-elif dateargmunet2[4] == "/":
-	splitslash2 = dateargmunet2.split("/")
-	hyphenjoin2 = "-".join(splitslash2)
-elif dateargmunet1[2] == "-":
-	split1 = dateargmunet1.split("-")
-	join1 = "-".join(reversed(split1))
-elif dateargmunet2[2] == "-":
-	split2 = dateargmunet2.split("-")
-	join2 = "-".join(reversed(split2))
-elif dateargmunet1[4] == "-":
-	if numargument == 2:
+if numargument == 2:
+	if dateargmunet1[4] == "/":
+		split1 = dateargmunet1.split("/")
+		join1 = "-".join(split1)
+		date_start = join1
+	elif dateargmunet2[4] == "/":
+		split2 = dateargmunet2.split("/")
+		join2 = "-".join(split2)
+		date_end = join2
+	elif dateargmunet1[2] == "-":
+		split1 = dateargmunet1.split("-")
+		join1 = "-".join(reversed(split1))
+		date_start = join1
+	elif dateargmunet2[2] == "-":
+		split2 = dateargmunet2.split("-")
+		join2 = "-".join(reversed(split2))
+		date_end = join2
+	elif dateargmunet1[4] == "-":
 		date_start = sys.argv[1]
-	else:
-		date_start = get_date_less1()
-elif dateargmunet2[4] == "-":
-	if numargument == 2:
+	elif dateargmunet2[4] == "-":
 		date_end = sys.argv[2]
 	else:
-		date_end = get_date()
+		print("Wrong date format")
 else:
-	print("Wrong date format")
-	
+	date_start = get_date_less1()
+	date_end = get_date()
+
+
+
 date_start = str(date_start)
 date_end = str(date_end)
 print(f"The chosen date range is from {date_start} to {date_end}")
