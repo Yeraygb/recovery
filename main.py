@@ -8,7 +8,7 @@ import open_programs
 import chrome_history
 import mozilla_history
 
-def main():
+""" def main():
 
 	#Ruta Mac
 	#user = os.environ.get("USER")
@@ -63,7 +63,8 @@ def main():
 	else:
 		print("You have no installed Firefox")
 
-main()
+main()"""
+
 
 #Start
 
