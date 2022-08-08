@@ -58,5 +58,15 @@ def sofware_instaled(hive, flag):
 software_list = sofware_instaled(winreg.HKEY_LOCAL_MACHINE, winreg.KEY_WOW64_32KEY) + sofware_instaled(winreg.HKEY_LOCAL_MACHINE, winreg.KEY_WOW64_64KEY) + sofware_instaled(winreg.HKEY_CURRENT_USER, 0)
 
 for software in software_list:
-	print('Name: %s, Date: %s' % (software['name'], software['date']))
+	date = str(software['date'])
+	if date.isnumeric() == True:
+		agedate = date[0:4]
+		monthdate = date[4:6]
+		daydate = date[6:8]
+		formatdate = agedate + "-" + monthdate + "-" + daydate
+		print('Name: %s' % (software['name']), formatdate)
+		#print(formatdate)
+	else:
+		date
 print('Number of installed apps: %s' % len(software_list))
+
