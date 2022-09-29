@@ -23,17 +23,12 @@ for p in w.Win32_Product():
 import winreg
 import datetime
 
-def transform_date(key_date):
-	return key_date/10000000 - 11644473600
-
 
 def sofware_instaled(hive, flag):
 	Register = winreg.ConnectRegistry(None, hive)
 	Key = winreg.OpenKey(Register, r"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", 0, winreg.KEY_READ | flag)
 
 	count_subkey = winreg.QueryInfoKey(Key)[0]
-	subkey = transform_date(count_subkey)
-	#dt = datetime.datetime.fromtimestamp(subkey)
 	dt = datetime.datetime.fromtimestamp(count_subkey)
 	print(dt)
 	
@@ -67,6 +62,7 @@ for software in software_list:
 		print('Name: %s' % (software['name']), formatdate)
 		#print(formatdate)
 	else:
-		date
+		if date.isalpha == True:
+			print(date)
 print('Number of installed apps: %s' % len(software_list))
 
