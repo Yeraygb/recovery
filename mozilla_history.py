@@ -45,8 +45,8 @@ def mozilla_history(year_min, month_min, day_min, year_max, month_max, day_max):
 	print("MOZILLA FIREFOX \n")
 
 	#Path Mac
-	user = os.environ.get("USER")
-	pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
+	#user = os.environ.get("USER")
+	#pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
 
 	ts_min = (datetime.datetime(year_min, month_min, day_min, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
 	ts_max = (datetime.datetime(year_max, month_max, day_max, 0, 0) - datetime.datetime(1970,1,1)).total_seconds()
@@ -55,7 +55,7 @@ def mozilla_history(year_min, month_min, day_min, year_max, month_max, day_max):
 	ts_max = int(ts_max) * 1000000
 
 	#Path Windows
-	#pre_path = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
+	pre_path = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
 
 	directorys = os.listdir(pre_path)
 	for x in range(len(directorys)):
@@ -81,8 +81,8 @@ def mozilla_without_arg():
 	print("MOZILLA FIREFOX HISTORY 24H")
 
 	#Path Mac
-	user = os.environ.get("USER")
-	pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
+	#user = os.environ.get("USER")
+	#pre_path = "/Users/"+user+"/Library/Application Support/Firefox/Profiles/"
 
 	year = get_year()
 	mes = get_month()
@@ -98,8 +98,8 @@ def mozilla_without_arg():
 	ts_max = int(ts_max) * 1000000
 
 	#Path Windows
-	#data = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
-	#pre_path = data
+	data = path.expandvars(r'%APPDATA%/Mozilla/Firefox/Profiles')
+	pre_path = data
 
 	directorys = os.listdir(pre_path)
 	for x in range(len(directorys)):
